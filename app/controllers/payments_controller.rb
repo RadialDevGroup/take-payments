@@ -8,7 +8,7 @@ class PaymentsController < ApplicationController
     @payment.card_token = params.require(:stripeToken)
 
     if @payment.save
-      redirect_to :payment, success: 'Thank you for your business'
+      redirect_to :payment, success: 'Your payment has been processed'
     else
       flash[:errors] = @payment.errors.full_messages.to_sentence
       render :new

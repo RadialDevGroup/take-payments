@@ -1,0 +1,15 @@
+h1 Create an Invoice
+
+= form_for @invoice, html: { class: 'uk-form' } do |f|
+  .uk-form-row
+    = f.label :amount_in_cents
+    .uk-form-controls
+      = f.text_field :amount_in_cents
+
+  .uk-form-row
+    = f.label :invoice_number
+    .uk-form-controls
+      = f.text_field :invoice_number
+
+  .uk-form-row
+    = f.submit

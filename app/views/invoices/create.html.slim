@@ -1,0 +1,2 @@
+a[ href= new_payment_url(host: ENV['PAYMENT_HOST'] || 'localhost:3000' , w: @param) ]
+  | Pay invoice number #{ params[:invoice].try(:[], :invoice_number) }
