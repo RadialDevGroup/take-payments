@@ -1,0 +1,15 @@
+.uk-height-viewport: .uk-container.uk-container-center.uk-height-1-1
+  .uk-height-1-1.uk-vertical-align: .uk-vertical-align-middle.uk-width-1-1
+    .uk-text-center
+      h1 You are paying
+
+      h2 Amount: #{number_to_currency @payment.amount_in_dollars}
+      h2 Invoice number: #{@payment.invoice_number}
+
+      = form_for @payment, url: payment_path do |f|
+        script[ data=@payment.stripe_attributes src="https://checkout.stripe.com/checkout.js" class="stripe-button" ]
+
+        = f.hidden_field :description
+        = f.hidden_field :amount
+        = f.hidden_field :invoice_number
+

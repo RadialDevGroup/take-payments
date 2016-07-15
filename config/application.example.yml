@@ -1,0 +1,14 @@
+defaults: &defaults
+  STRIPE_KEY:            '123'
+  STRIPE_PUBLIC_KEY:     '456'
+  COMPANY_NAME: 'Megacorp'
+
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
