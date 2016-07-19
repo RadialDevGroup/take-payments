@@ -6,10 +6,28 @@
       h2 Amount: #{number_to_currency @payment.amount_in_dollars}
       h2 Invoice number: #{@payment.invoice_number}
 
-      = form_for @payment, url: payment_path do |f|
-        script[ data=@payment.stripe_attributes src="https://checkout.stripe.com/checkout.js" class="stripe-button" ]
+    .uk-grid
+      .uk-width-small-1-4.uk-offset-small-1-4
+        | (no fee)
+        script[
+          src="https://www.dwolla.com/scripts/button.min.js" class="dwolla_button" type="text/javascript"
+          data={
+            key: "W5ZpcdoctLJGaplKclCk5zhtQ0bovQ67HjlbvVAnTIRE0crU18",
+            redirect: payment_url,
+            label: "Pay now",
+            name: "Invoice",
+            description: @payment.description,
+            amount: @payment.amount_in_dollars,
+            shipping: "0",
+            tax: "0",
+            guest-checkout: "true",
+            type: "simple"
+          }
+        ]
+      .uk-width-small-1-4
+        = form_for @payment, url: payment_path do |f|
+          script[ data=@payment.stripe_attributes src="https://checkout.stripe.com/checkout.js" class="stripe-button" ]
 
-        = f.hidden_field :description
-        = f.hidden_field :amount
-        = f.hidden_field :invoice_number
-
+          = f.hidden_field :description
+          = f.hidden_field :amount
+          = f.hidden_field :invoice_number
